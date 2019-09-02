@@ -1,0 +1,20 @@
+{
+  "name": "convertToPDF",
+  "version": "0.0.1",
+  "author": "mlevy",
+  "dependencies": {
+    "angular": "^1.7.8",
+    "express": "^4.17.1",
+    "http": "0.0.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.3",
+    "grunt": "^1.0.4",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-exec": "^3.0.0",
+    "typescript": "^3.6.2"
+  }
+}
