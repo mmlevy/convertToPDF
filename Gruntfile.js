@@ -10,9 +10,6 @@ module.exports = function(grunt) {
             ts: {
                 cmd: 'npx tsc'
             },
-            main: {
-                cmd: 'node' + dir.dist + '/main.js'
-            },
             run: {
                 cmd: 'node ' + dir.dist + '/server.js'
             }
@@ -21,7 +18,7 @@ module.exports = function(grunt) {
             main: {
                 files: [
                     // Copy html
-                    {expand: true, cwd: dir.src, src: [ '**.html', '**.css'], dest: dir.dist + '/'},
+                    {expand: true, cwd: dir.src, src: [ '**/**.html', '**.css'], dest: dir.dist + '/'},
                     // Copy front-end libs
                     {expand: true, cwd: 'node_modules/bootstrap', src: [ 'dist/**'], dest: dir.dist + '/lib/bootstrap'},
                     {expand: true, cwd: 'node_modules/angular', src: [ '**.js', '**.css'], dest: dir.dist + '/lib/angular'}
