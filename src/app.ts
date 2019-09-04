@@ -1,6 +1,9 @@
-const app = angular.module('app', []);
+namespace main {
+    'use strict';
 
-app.controller('MainController', function MainController($scope) {
-    // TODO - DO NOT USE $SCOPE!!! NO NO NO!
-    $scope.message = 'Yeah it works';
-});
+    angular.module('app', [])
+        .controller('MainController', function MainController($scope) {
+            // TODO - DO NOT USE $SCOPE!!! NO NO NO!
+            $scope.message = 'Yeah it works';
+        });
+}
