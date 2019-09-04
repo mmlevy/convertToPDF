@@ -20,8 +20,11 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    // includes files within path and its sub-directories
-                    {expand: true, cwd: dir.src, src: [ '**.html'], dest: dir.dist + '/'}
+                    // Copy html
+                    {expand: true, cwd: dir.src, src: [ '**.html', '**.css'], dest: dir.dist + '/'},
+                    // Copy front-end libs
+                    {expand: true, cwd: 'node_modules/bootstrap', src: [ 'dist/**'], dest: dir.dist + '/lib/bootstrap'},
+                    {expand: true, cwd: 'node_modules/angular', src: [ '**.js', '**.css'], dest: dir.dist + '/lib/angular'}
                 ]
             }
         }
