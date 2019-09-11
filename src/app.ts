@@ -5,23 +5,14 @@ namespace app {
         'ui.router',
         'app.converter'
     ])
-    // TODO: Get the state to work
         .config(function($stateProvider, $urlRouterProvider) {
-            //$urlRouterProvider.otherwise('/converter');
+            // Default landing page
+            $urlRouterProvider.otherwise('/converter');
 
-            // $stateProvider.state('converter', {
-            //     url: '/converter',
-            //     //templateUrl: 'converter/converter.component.tpl.html',
-            //     component: 'ConverterComponent'
-            // });
-
-            // $stateProvider.state('converter', {
-            //     url: '/converter',
-            //     views: {
-            //         main: {
-            //             template: '<converter></converter>'
-            //         }
-            //     }
+            // TODO: About page
+            // $stateProvider.state('about', {
+            //     url: '/about',
+            //     template: '<about></about>'
             // });
         });
 }
