@@ -1,7 +1,7 @@
-namespace converter {
+namespace app.converter {
     'use strict';
 
-    angular.module('converter', [
-        'ui.bootstrap'
+    angular.module('app.converter', [
+        'ui.router'
     ]);
 }

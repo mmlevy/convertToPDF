@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="app" ng-controller="AppCtrl">
 <head>
     <meta charset="UTF-8">
     <title>Convert To PDF</title>
+    <!--TODO use grunt plugin to copy all of these files, manually copying these is a maintenance nightmare-->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/angular-ui-router.js"></script>
+    <script src="converter/converter.module.js"></script>
+    <script src="converter/converter.component.js"></script>
+    <script src="converter/converter.config.js"></script>
     <script src="app.js"></script>
+    <script src="app.controller.js"></script>
 </head>
-<body ng-controller="MainController">
+<body>
  <h1>Eventually, this will be a program that converts an image to a PDF file</h1>
- <p>{{ message }}</p>
+ <!--<div ui-view></div>-->
+<converter></converter>
 </body>
 </html>

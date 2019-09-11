@@ -1,7 +1,7 @@
-namespace converter {
+namespace app.converter {
     'use strict';
 
-    angular.module('converter')
+    angular.module('app.converter')
         .config(configStates);
 
     configStates.$inject = ['$stateProvider'];
