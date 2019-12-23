@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-    var dir = {};
+    let dir = {};
     dir.src = 'src';
     dir.dist = 'dist';
 
@@ -31,6 +31,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks('grunt-include-source');
+
+    // TODO: Add some sort of "watch" task
 
     grunt.registerTask('build', [
         'clean',

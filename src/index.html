@@ -2,6 +2,7 @@
 <html lang="en" ng-app="app" ng-controller="AppCtrl">
 <head>
     <meta charset="UTF-8">
+    <base href="/">
     <title>Image To PDF Converter</title>
     <!--TODO use grunt plugin to copy all of these files, manually copying these is a maintenance nightmare-->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
@@ -9,7 +10,8 @@
     <script src="lib/angular-ui-router/angular-ui-router.js"></script>
     <script src="converter/converter.module.js"></script>
     <script src="converter/converter.component.js"></script>
-    <script src="converter/converter.config.js"></script>
+    <script src="about/about.module.js"></script>
+    <script src="about/about.component.js"></script>
     <script src="app.js"></script>
     <script src="app.controller.js"></script>
 </head>
