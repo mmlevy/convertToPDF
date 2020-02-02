@@ -22,7 +22,9 @@ module.exports = function(grunt) {
                     // Copy front-end libs
                     {expand: true, cwd: 'node_modules/bootstrap', src: [ 'dist/**'], dest: dir.dist + '/lib/bootstrap'},
                     {expand: true, cwd: 'node_modules/angular', src: [ '**.js', '**.css'], dest: dir.dist + '/lib/angular'},
-                    {expand: true, cwd: 'node_modules/angular-ui-router/release', src: [ '**.js'], dest: dir.dist + '/lib/angular-ui-router'}
+                    {expand: true, cwd: 'node_modules/angular-ui-router/release', src: [ '**.js'], dest: dir.dist + '/lib/angular-ui-router'},
+                    {expand: true, cwd: 'node_modules/angular-toastr/dist', src: [ '**.js', '**.css'], dest: dir.dist + '/lib/angular-toastr'},
+                    {expand: true, cwd: 'node_modules/angular-animate', src: [ '**.js'], dest: dir.dist + '/lib/angular-animate'}
                 ]
             }
         }

@@ -4,7 +4,9 @@ namespace app {
     angular.module('app', [
         'ui.router',
         'app.converter',
-        'app.about'
+        'app.about',
+        'ngAnimate',
+        'toastr'
     ])
     .config(($stateProvider, $urlRouterProvider, $locationProvider) => {
         // This gets rid of the hashbang in the url

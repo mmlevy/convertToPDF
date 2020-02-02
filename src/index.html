@@ -5,18 +5,24 @@
     <base href="/">
     <title>Image To PDF Converter</title>
     <!--TODO use grunt plugin to copy all of these files, manually copying these is a maintenance nightmare-->
+    <!-- lib stylesheets -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="lib/angular-toastr/angular-toastr.css" />
+    <!-- lib src -->
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-toastr/angular-toastr.tpls.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/angular-ui-router/angular-ui-router.js"></script>
+    <!-- src files -->
     <script src="converter/converter.module.js"></script>
     <script src="converter/converter.component.js"></script>
+    <script src="converter/fileInput.directive.js"></script>
     <script src="about/about.module.js"></script>
     <script src="about/about.component.js"></script>
     <script src="app.js"></script>
     <script src="app.controller.js"></script>
 </head>
 <body>
-    <!--Localize this message? Maybe even set this in AppCtrl so it's not hard-coded in template-->
     <h1>Image To PDF Converter</h1>
     <ui-view></ui-view>
 </body>

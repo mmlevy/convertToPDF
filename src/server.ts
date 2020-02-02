@@ -8,7 +8,11 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, '')));
 
 // TODO - Implement api for file conversion
-// app.get('/api', () => {});
+app.post('/api/upload', (req, res) => {
+    res.send({
+       test: "test success"
+    });
+});
 
 // Catch all other routes and return to index file
 app.get('*', (req, res) => {
