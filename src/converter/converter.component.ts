@@ -4,29 +4,42 @@ namespace app.converter {
     export class ConverterComponent {
         public text;
 
-        static readonly $inject: string[] = ['$http', 'toastr'];
+        static readonly $inject: string[] = ['$http', 'toastr', '$window'];
 
         selectedFile: any;
+        loading: boolean;
 
         constructor(
             private readonly $http: any,
-            private readonly toastr: any) {}
+            private readonly toastr: any,
+            private readonly $window: any) {}
 
         $onInit(): void {
-            // Nothing to initialize
+            this.loading = false;
         }
 
-        upload() {
+        convert() {
             const formData = new FormData();
             formData.append('file', this.selectedFile);
+            this.loading = true;
 
-            this.$http.post('/api/upload', formData, { headers: { transformRequest: angular.identity, 'Content-Type': undefined } })
+            this.$http.post('/api/convert', formData, { headers: { transformRequest: angular.identity, 'Content-Type': undefined } })
                 .then((response) => {
-                    this.toastr.success('The file was uploaded', 'Success');
+                    this.toastr.success('File conversion complete', 'Success');
                 })
                 .catch((error) => {
-                    this.toastr.success('The file was not uploaded', 'Error');
+                    this.toastr.error('File conversion failed', 'Error');
+                })
+                .finally(() => {
+                    this.loading = false;
+                    this.download();
                 });
+        }
+
+        download() {
+            // TODO: Don't use hardcoded url
+            // $window.open($location.protocol() + '://' + $location.host()
+            this.$window.open('http://localhost:3000/api/download?filename=' + this.selectedFile.name, '_blank');
         }
     }
 

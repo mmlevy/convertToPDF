@@ -11,6 +11,14 @@ app.use(fileUpload({
     createParentPath: true
 }));
 
+app.get('/api/download', (req, res) => {
+    console.log(req.query);
+    const filePath = './uploads/' + req.query.filename;
+    res.download(filePath);
+    // TODO: Delete file after sending it
+});
+
+// This endpoint is obsolete, keeping it here for reference while the other endpoints are being ironed out
 app.post('/api/upload', (req, res) => {
     console.log(req.files.file);
     if (!req.files) {
@@ -26,8 +34,14 @@ app.post('/api/upload', (req, res) => {
 });
 
 app.post('/api/convert', (req, res) => {
-    console.log(req.fileName);
-    // TODO: Convert file and return it
+    console.log(req.files.file);
+    let file = req.files.file;
+    // TODO: Convert before storing the file in uploads
+    file.mv('./uploads/' + file.name, (err) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+    });
     return res.status(200).send('File converted');
 });
 

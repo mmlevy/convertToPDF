@@ -1,13 +1,21 @@
 <div>
-    <span>Select file to convert:</span>
+    <div ng-if="!$ctrl.loading">
+        <span>Select file to convert:</span>
+    </div>
     <div class="form-group">
         <div class="input-group">
-            <div>
+            <div ng-if="!$ctrl.loading">
+                <!-- TODO: Need to have 'Browse' button that covers the default html file input stuff.
+                Technically, the file is still selected so we want angularjs to handle displaying what file
+                is actively selected.-->
                 <input type="file" accept="image/*" file-input="$ctrl.selectedFile"/>
                 <span class="btn btn-primary btn-file"
                       ng-class="$ctrl.selectedFile ? '' : 'disabled'"
-                      ng-click="$ctrl.upload()">Upload</span>
+                      ng-click="$ctrl.convert()">Convert</span>
                 </span>
+            </div>
+            <div ng-if="$ctrl.loading">
+                Loading...
             </div>
         </div>
     </div>
