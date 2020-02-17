@@ -2,6 +2,8 @@ import * as express from 'express';
 import * as fileUpload from 'express-fileupload';
 import * as path from 'path';
 import * as http from 'http';
+import * as fs from 'fs';
+import * as imagesToPdf from 'images-to-pdf';
 
 const app = express();
 const port = 3000;
@@ -12,37 +14,36 @@ app.use(fileUpload({
 }));
 
 app.get('/api/download', (req, res) => {
-    console.log(req.query);
-    const filePath = './uploads/' + req.query.filename;
-    res.download(filePath);
-    // TODO: Delete file after sending it
-});
-
-// This endpoint is obsolete, keeping it here for reference while the other endpoints are being ironed out
-app.post('/api/upload', (req, res) => {
-    console.log(req.files.file);
-    if (!req.files) {
-        return res.status(400).send({ error: 'No file was received' });
+    if (!req.query.filename) {
+        return res.status(400).send({ error: 'filename argument is required' });
     }
-    let file = req.files.file;
-    file.mv('./uploads/' + file.name, (err) => {
-        if (err) {
-            return res.status(500).send(err);
-        }
+    const filePath = './uploads/' + req.query.filename;
+    res.download(filePath, () => {
+        fs.unlinkSync(filePath);
     });
-    return res.status(200).send('File uploaded!');
 });
 
 app.post('/api/convert', (req, res) => {
-    console.log(req.files.file);
-    let file = req.files.file;
-    // TODO: Convert before storing the file in uploads
-    file.mv('./uploads/' + file.name, (err) => {
+    const file = req.files.file;
+    if (!file) {
+        return res.status(400).send({ error: 'No file selected' });
+    }
+    const filePath = './uploads/' + file.name;
+    file.mv(filePath, (err) => {
         if (err) {
             return res.status(500).send(err);
+        } else {
+            imagesToPdf([filePath], './uploads/' + file.name.replace(/\.[^/.]+$/, '') + '.pdf')
+                .then(() => {
+                    return res.status(200).send('File converted');
+                })
+                .catch((err) => {
+                    return res.status(500).send(err);
+                }).finally(() => {
+                    fs.unlinkSync(filePath);
+                })
         }
     });
-    return res.status(200).send('File converted');
 });
 
 // Catch all other routes and return to index file

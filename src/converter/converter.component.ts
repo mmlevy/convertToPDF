@@ -2,7 +2,6 @@ namespace app.converter {
     'use strict';
 
     export class ConverterComponent {
-        public text;
 
         static readonly $inject: string[] = ['$http', 'toastr', '$window'];
 
@@ -24,10 +23,10 @@ namespace app.converter {
             this.loading = true;
 
             this.$http.post('/api/convert', formData, { headers: { transformRequest: angular.identity, 'Content-Type': undefined } })
-                .then((response) => {
+                .then(() => {
                     this.toastr.success('File conversion complete', 'Success');
                 })
-                .catch((error) => {
+                .catch(() => {
                     this.toastr.error('File conversion failed', 'Error');
                 })
                 .finally(() => {
@@ -37,9 +36,11 @@ namespace app.converter {
         }
 
         download() {
-            // TODO: Don't use hardcoded url
-            // $window.open($location.protocol() + '://' + $location.host()
-            this.$window.open('http://localhost:3000/api/download?filename=' + this.selectedFile.name, '_blank');
+            // TODO: input validation
+            const fileName = this.selectedFile.name.replace(/\.[^/.]+$/, '') + '.pdf';
+            // TODO: Maybe use $location service, not sure how reliable $window.origin is
+            // $location.protocol() + '://' + $location.host()
+            this.$window.open(this.$window.origin + '/api/download?filename=' + fileName, '_blank');
         }
     }
 
